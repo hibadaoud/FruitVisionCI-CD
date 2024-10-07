@@ -1,0 +1,5 @@
+/Files
+/backend/coverage
+/backend/mongo-data
+/backend/node_modules
+/backend/.env
