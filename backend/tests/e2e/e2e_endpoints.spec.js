@@ -7,18 +7,12 @@ describe("Integration testing", () => {
 	let app;
 	beforeAll(() => {
 		mongoose
-            .connect("mongodb://mongo:supspace1@localhost:27018/", {dbName: "FruitVision-Test-Database"}) 
+            // .connect("mongodb://mongo:fruitvision@localhost:27018/", {dbName: "FruitVision-Test-Database"}) 
+            .connect("mongodb://mongo:fruitvision@mongodb:27017/", {dbName: "FruitVision-Test-Database"}) 
 			.then(() => console.log("Connected to Test Database"))
 			.catch((err) => console.log(`Error: ${err}`));
 
 		app = createApp();
-	});
-
-    it("should get all the histories", async () => {
-		const response = await request(app).get("/api/history")
-		expect(response.statusCode).toBe(200);
-        expect(Array.isArray(response.body)).toBeTruthy(); // Expecting an array of histories
-
 	});
 
 	it("should create the history", async () => {
@@ -55,6 +49,13 @@ describe("Integration testing", () => {
         expect(response.body).toHaveProperty('title', 'Server Error');
         expect(response.body).toHaveProperty('message', 'Database error');
     });
+
+    it("should get all the histories", async () => {
+		const response = await request(app).get("/api/history")
+		expect(response.statusCode).toBe(200);
+        expect(Array.isArray(response.body)).toBeTruthy(); // Expecting an array of histories
+
+	});
 
 	afterAll(async () => {
 		await mongoose.connection.dropDatabase();

@@ -37,21 +37,10 @@ services:
         ME_CONFIG_MONGODB_ADMINPASSWORD: "fruitvision"
       depends_on:
         - mongodb
-      # volumes:
-      # - type: bind
-      #   source: ./wait-for.sh
-      #   target: /wait-for.sh
-      # entrypoint:
-      #     - /bin/sh
-      #     - /wait-for.sh
-      #     - mongodb:27017
-      #     - --
-      #     - tini
-      #     - --
-      #     - /docker-entrypoint.sh
+    
   backend:
-      image: hiba25/backend_updated
-      container_name: backend_container_updated
+      image: hiba25/backend
+      container_name: backend_container
       ports:
         - "5000:5000"
       environment:
