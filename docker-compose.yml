@@ -39,7 +39,7 @@ services:
         - mongodb
     
   backend:
-      image: hiba25/backend
+      image: hiba25/backend_updated
       container_name: backend_container
       ports:
         - "5000:5000"
