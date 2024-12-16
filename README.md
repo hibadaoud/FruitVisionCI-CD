@@ -103,7 +103,9 @@ To facilitate the integration of annotated data with the model, we converted ind
 We implemented the **Faster R-CNN** model with a **ResNet-50** backbone and **Feature Pyramid Network (FPN)** for fruit detection and classification.
 
 #### **1. Feature Extraction and Multi-Scale Representation**
-![Feature Extraction](./images/Feature_Extraction_and_FPN.png) |
+<div align="center">
+    <img src="./images/Feature_Extraction_and_FPN.png" alt="Fruit Detection and Classification Process">
+</div>
 
 - **Backbone - ResNet-50**  
    - Extracts essential features from the input images using convolutional layers.  
@@ -114,8 +116,9 @@ We implemented the **Faster R-CNN** model with a **ResNet-50** backbone and **Fe
    - Produces **multi-scale feature maps** that allow the model to detect fruits of various sizes effectively.  
 
 #### **2. Fruit Detection and Classification Process**
-![Fruit Detection and Classification](./images/Fruit_Detection_and_Classification_Process.png)
-
+<div align="center">
+    <img src="./images/Fruit_Detection_Process.png" alt="Fruit Detection and Classification Process" width="70%">
+</div>
 1. **Region Proposal Network (RPN)**:  
    - The FPN-generated feature maps are used to propose potential regions (RoIs) where fruits might be located.  
    - Each proposal is assigned an **objectiveness score** to filter irrelevant regions.  
