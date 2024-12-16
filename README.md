@@ -1,161 +1,228 @@
-<a name="readme-top"></a>
-<div align="center">
+#  **FruitVision: AI-based Application for Counting and Classification** 
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-</div>
+## **Table of Contents**
+- [📌 Project Overview](#-project-overview)
+- [ 🔑Key Objectives](#key-objectives)
+- [Technologies Used](#technologies-used)
+- [Architecture](#architecture)
+- [📜 Data](#-data)
+- [🧠 Model](#-model)
+   - Data Annotation: Transformation to COCO Format
+   - Model Architecture
+- [Setup and Deployment](#setup-and-deployment)
+- [Results](#results)
+- [Challenges and Future Improvements](#challenges-and-future-improvements)
+
+---
+
+## 📌 Project Overview  
+
+### 📚 Background:
+This project, developed by Hiba Daoud and Farah Elloumi as part of their end-of-year work at the Higher School of Communications in Tunis (SUP'COM), aims to **count and classify fruits on trees** to assist farmers in **yield estimation** while maintaining a **detailed history** of the classified fruits for improved tracking and management.
+
+### 🌟 Project Scope:
+
+The project is divided into **two main parts**:
+1. **Model Development**: Building a deep learning computer vision model for processing, detecting, classifying, and counting fruits on trees.
+2. **Application Development**: Integrating the model into an application, with a backend and a persistent database for seamless functionality.
+
+## 🔑 Key Objectives:
+
+- 🖼️ **User-Friendly Interface**  
+   Develop an **intuitive and easy-to-use application** that allows farmers to:
+   - Capture photos of their trees.  
+   - View the processed results, including fruit detection, classification, and counts.  
+
+- 🧠 **Deep Learning Integration**  
+   Incorporate a **computer vision model** for:  
+   - Image processing.  
+   - Accurate detection, classification, and counting of fruits on trees.  
+
+- 📊 **Data Persistence**  
+   Implement a **MongoDB database** to:  
+   - Store the history of fruit yield estimations.  
+   - Enable efficient tracking and analysis for crop management.  
+
+- 🔗 **Seamless Integration**  
+   Ensure smooth and real-time integration between the following components:  
+   - **Deep Learning Model**  
+   - **Application Frontend** (for user interaction).  
+   - **Backend Database** (for data storage and retrieval).  
 
 
-<!-- PROJECT LOGO --> 
-<br />
-<div align="center">
-  <a href="https://github.com/hibadaoud/FruitVision">
-    <img src="application/FruitVision/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" alt="Logo" width="256" height="256">
-  </a>
-    <h1 style="font-size:50px">Fruit Vision
-    </h1>
-  <p align="center">
-    Automate Fruit Counting
-    <br />
-    <br />
-    <a href="https://github.com/hibadaoud/FruitVision/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    ·
-    <a href="https://github.com/hibadaoud/FruitVision/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
-  </p>
-</div>
+---
 
+## **Technologies Used**
 
-# Fruit Vision
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#features">Features</a></li>
-     <li><a href="#installation">Detectron2</a></li>
-    <li><a href="#installation">Installation</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#contributing">Docker Setup</a></li>
-    <li><a href="#contributing">Microsoft Azure Terraform Setup</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
+| Component            | Technology                          |
+|-----------------------|-------------------------------------|
+| **Model**            | Detectron2, Faster R-CNN |
+| **Backend API**      | FastAPI                             |
+| **Frontend**         | Flutter                             |
+| **Backend**          | Express.js, MongoDB                |
+| **Authentication**   | Firebase Auth                      |
+| **Containerization** | Docker                              |
+---
+## **Architecture**
 
+## 📜 Data:
+We collected **194 images** spanning 6 fruit categories: **Apples, Strawberries, Kiwis, Lemons, Oranges**, and an **Unknown** type.
+Annotation was performed using **LabelMe**.
+The photos are on teh directory dataset
 
+## 🧠 Model:
+The fruit detection model is built using **Faster R-CNN** with the [**Detectron2**](https://github.com/facebookresearch/detectron2) library.
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+### 🗂️ **Data Annotation: Transformation to COCO Format**
 
-This application leverages artificial intelligence to accurately count the number of fruits on a tree from images. It is designed to aid researchers and agricultural professionals by simplifying the process of yield estimation and crop management, thus providing valuable insights for agricultural decisions.
+To facilitate the integration of annotated data with the model, we converted individual **LabelMe JSON files** into a single **COCO JSON file** useful for object detection and segmentation tasks.
 
-This is a project by Farah Elloumi & Hiba Daoud realized for their end-of-year project at the Higher School of Communications at Tunis (SUP'COM).
+---
 
-<br/>
-<div style="display:flex;flex-direction:column;justify-content:canter;" align="center">
-    <div>  
-        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/a14a6abe-f49c-403e-a9b1-225616b11194" alt="pic1" height="400">
-<!--         <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/86dc13e8-df93-4ee0-8b74-7595cbae113b" alt="Login and signup" height="400">
-        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/b3516cc3-544f-4091-83bf-4038d0fc029b" alt="settings" height="400">   -->
-    </div>
-    <br/>
-    <div>
-        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/b0d97f9c-db2d-4660-969b-60bf6aa8744c" alt="pic2" height="400">    
-<!--         <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/c69c97bb-d3bd-4dc2-a207-bc1625fd27cd" alt="Prediction History" height="400">
-    </div> -->
-    <br/>
-    <div>
-        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/678e4631-0f33-4211-8843-f0915ec5c632" alt="pic3" height="400">    
-<!--         <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/c69c97bb-d3bd-4dc2-a207-bc1625fd27cd" alt="Prediction History" height="400">
-    </div> -->
-    <br/>
-    <div>
-        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/605465c4-cb6e-4d1e-8d78-e3db9b27bfde" alt="pic3" height="400">    
-<!--         <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/c69c97bb-d3bd-4dc2-a207-bc1625fd27cd" alt="Prediction History" height="400">
-    </div> -->
-    <br/>
-</div>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+#### **Process**
 
-## Features
+1. **Annotation Collection**:  
+   - Each image was annotated using **LabelMe** to generate individual JSON files.  
+   - These annotations include:
+     - Bounding boxes.
+     - Object categories.
 
-- **AI-Powered Fruit Detection**: Uses advanced deep learning models to identify and count fruits accurately.
-- **User-Friendly Interface**: Features an easy-to-use interface that allows users to quickly upload images and get counts in real-time.
-- **Data Analysis Tools**: Includes functionality to analyze and export data for further agricultural planning and analysis.
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+2. **Transformation**:  
+   - The **labelme2coco** tool was used to combine all JSON files into a single **COCO JSON file**.  
 
-## Detectron2
+3. **COCO JSON Structure**:  
+   The resulting COCO file contains:  
+   - **Images**: The paths and metadata of all annotated images.  
+   - **Annotations**: Bounding boxes, segmentation masks, and associated categories.  
+   - **Categories**: Labels for the detected objects (e.g., Apples, Strawberries, etc.).
 
-We have utilized the Detectron2 model, found on [this site](https://github.com/facebookresearch/detectron2), which is a state-of-the-art object detection library developed by Facebook AI Research. We have adapted this model according to our fruit database to ensure high accuracy in fruit detection and counting.
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### 🧠 **Model Architecture**
 
-## Installation
+We implemented the **Faster R-CNN** model with a **ResNet-50** backbone and **Feature Pyramid Network (FPN)** for fruit detection and classification.
 
-1. **Clone this repository** to your local machine.
-2. **Navigate to the project directory**.
-3. **Run `flutter pub get`** to install dependencies.
-4. **Connect your device** and **run the app** using `flutter run`.
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+---
+#### **1. Feature Extraction and Multi-Scale Representation**
 
-## Docker Setup
+| ![Feature Extraction and FPN](./images/Feature Extraction and FPN.png) |
+|:---:|
+| **ResNet-50 Backbone and Feature Pyramid Network (FPN)** |
 
-To simplify the deployment process, we have containerized the application using Docker. Follow these steps to set up and run the application in a Docker container:
-1. **Build the Docker image** using `docker build -t fruitvision:latest .`
-2. **Run the Docker container** using `docker run -p 8000:8000 fruitvision:latest`.
+- **Backbone - ResNet-50**  
+   - Extracts essential features from the input images using convolutional layers.  
+   - At each layer, the image resolution is divided by 2, allowing for a detailed analysis at multiple scales.  
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+-  **Feature Pyramid Network (FPN)**  
+   - Enhances the feature maps generated by ResNet-50 by combining features at different resolutions.  
+   - Produces **multi-scale feature maps** that allow the model to detect fruits of various sizes effectively.  
 
-## Microsoft Azure Terraform Setup
-We have also utilized Terraform to manage and provision the infrastructure on Microsoft Azure. Follow these steps to set up the infrastructure using Terraform:
+#### **2. Fruit Detection and Classification Process**
 
-1. **Configure Azure credentials** using `az login`.
-2. **Navigate to the project directory** using `cd terraform` .
-3. **Initialize Terraform** using `terraform init`.
-4. **Apply the Terraform configuration** using `terraform apply`.
+| ![Fruit Detection and Classification](./images/Fruit Detection and Classification Process.png) |
+|:---:|
+| **Detection and Classification Pipeline** |
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+1. **Region Proposal Network (RPN)**:  
+   - The FPN-generated feature maps are used to propose potential regions (RoIs) where fruits might be located.  
+   - Each proposal is assigned an **objectiveness score** to filter irrelevant regions.  
 
-## Contributing
+2. **RoI Pooling**:  
+   - Valid regions are normalized and resized to a fixed size.  
+   - This ensures consistent input for further processing.
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+3. **Classification and Refinement**:  
+   - Fully connected layers analyze each **RoI** to:  
+     - Determine the **class** of the detected object (e.g., Apple, Strawberry).  
+     - Refine the **bounding box** around the fruit for precise localization.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+4. **Final Output**:  
+   - The model outputs an image annotated with **bounding boxes** around each detected fruit and its corresponding classification label.  
+   - The total number of fruits is determined by counting the bounding boxes.
+---
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### 2. **Application Integration**
+The model is integrated into the application via **FastAPI**:
+- **Model Inference**: FastAPI serves as the backend API to perform predictions.
+- **Endpoints**:
+   - **/analyze**: Accepts input images for fruit detection.
+   - **/get_analyzed_image**: Retrieves processed images with bounding boxes.
+- **Data Flow**:
+   - **Frontend**: Flutter app sends images to FastAPI.
+   - **Backend**: FastAPI processes the image using the trained model and returns results.
+   - **History Storage**: Results are stored in **MongoDB**.
 
-## License
+---
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## **Deployment with Kubernetes**
 
-<!-- CONTACT -->
+The deployment is based on **Kubernetes microservices** hosted on **Azure Kubernetes Service (AKS)**. 
 
-## Contact
+### **Key Details**:
+1. **Microservices**:
+   - FastAPI for model inference.
+   - Express.js for backend logic and history management.
+2. **Scalability**:
+   - Multiple **replicas** are created for each microservice to ensure high availability.
+3. **Ingress Controller**:
+   - Azure’s **webapprouting.kubernetes.azure.com** forwards external traffic to internal microservices securely.
+4. **Pods and Cluster**:
+   - The AKS cluster manages all pods with automated load balancing and scaling.
+5. **Deployment URL**:
+   - The final deployment URL is automatically updated in **Firebase Remote Config** after each successful pipeline run.
 
-Farah Elloumi - [@Farah-Elloumi][linkedin-url] - farah.elloumi@supcom.tn <br/>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+---
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/hibadaoud/FruitVision.svg?style=for-the-badge
-[contributors-url]: https://github.com/hibadaoud/FruitVision/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/hibadaoud/FruitVision.svg?style=for-the-badge
-[forks-url]: https://github.com/hibadaoud/FruitVision/network/members
-[stars-shield]: https://img.shields.io/github/stars/hibadaoud/FruitVision.svg?style=for-the-badge
-[stars-url]: https://github.com/hibadaoud/FruitVision/stargazers
-[issues-shield]: https://img.shields.io/github/issues/hibadaoud/FruitVision.svg?style=for-the-badge
-[issues-url]: https://github.com/hibadaoud/FruitVision/issues
-[license-shield]: https://img.shields.io/github/license/hibadaoud/FruitVision.svg?style=for-the-badge
-[license-url]: https://github.com/hibadaoud/FruitVision/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/farah-elloumi-735ab1269/
+## **CI/CD Pipeline**
+
+The **CI/CD pipeline** ensures a seamless and automated process from development to production. It is implemented using **GitLab CI/CD** with the following goals:
+
+### **Pipeline Stages**:
+1. **Testing**:
+   - Runs unit tests and code coverage checks.
+2. **Containerization**:
+   - Docker images are built, tested, and pushed to the registry.
+3. **Deployment**:
+   - Application is deployed to **Dev**, **Stage**, and **Prod** environments on Kubernetes.
+   - Ingress is configured to manage traffic routing.
+4. **Integration Testing**:
+   - Backend services are tested via **curl** commands to ensure endpoints are functioning.
+5. **Post-Deployment**:
+   - The deployment URL is stored in **Firebase Remote Config** to update the application automatically.
+
+### **Workflow**:
+![CI/CD Workflow](image.png)
+
+For detailed configuration, refer to the [`.gitlab-ci.yml`](.gitlab-ci.yml) file&#8203;:contentReference[oaicite:0]{index=0}.
+
+---
+
+## **Technologies Used**
+
+| Component            | Technology                          |
+|-----------------------|-------------------------------------|
+| **Model**            | Detectron2, Faster R-CNN, COCO Eval |
+| **Backend API**      | FastAPI                             |
+| **Frontend**         | Flutter                             |
+| **Backend**          | Express.js, MongoDB                |
+| **Authentication**   | Firebase Auth                      |
+| **Containerization** | Docker                              |
+| **Orchestration**    | Azure Kubernetes Service (AKS)      |
+| **Ingress Controller**| Azure Web Application Routing      |
+| **CI/CD**            | GitLab CI/CD                        |
+
+---
+
+## **Setup and Deployment**
+
+### Prerequisites
+- Docker
+- Kubernetes CLI (`kubectl`)
+- Azure Kubernetes Service (AKS) cluster set up
+- GitLab CI with environment variables:
+   - MongoDB credentials
+   - Firebase service account
+
+### Steps to Deploy
+1. **Clone the repository**:
+   ```bash
+   git clone <repo-link>
+   cd project-directory
