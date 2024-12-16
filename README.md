@@ -2,13 +2,13 @@
 
 ## **Table of Contents**
 - [📌 Project Overview](#-project-overview)
-- [ 🔑Key Objectives](#key-objectives)
-- [Technologies Used](#technologies-used)
-- [Architecture](#architecture)
+- [🔑 Key Objectives](#key-objectives)
+- [🚀 Technologies Used](#technologies-used)
+- [🏛️ Architecture](#architecture)
 - [📜 Data](#-data)
 - [🧠 Model](#-model)
-   - Data Annotation: Transformation to COCO Format
-   - Model Architecture
+   - [Data Annotation: Transformation to COCO Format](#️-data-annotation-transformation-to-coco-format)
+   - [Model Architecture](#️-model-architecture)
 - [Setup and Deployment](#setup-and-deployment)
 - [Results](#results)
 - [Challenges and Future Improvements](#challenges-and-future-improvements)
@@ -26,7 +26,9 @@ The project is divided into **two main parts**:
 1. **Model Development**: Building a deep learning computer vision model for processing, detecting, classifying, and counting fruits on trees.
 2. **Application Development**: Integrating the model into an application, with a backend and a persistent database for seamless functionality.
 
-## 🔑 Key Objectives:
+---
+
+## 🔑 Key Objectives
 
 - 🖼️ **User-Friendly Interface**  
    Develop an **intuitive and easy-to-use application** that allows farmers to:
@@ -52,7 +54,7 @@ The project is divided into **two main parts**:
 
 ---
 
-## **Technologies Used**
+## 🚀 Technologies Used
 
 | Component            | Technology                          |
 |-----------------------|-------------------------------------|
@@ -63,12 +65,20 @@ The project is divided into **two main parts**:
 | **Authentication**   | Firebase Auth                      |
 | **Containerization** | Docker                              |
 ---
-## **Architecture**
+
+## 🏛️ Architecture
+
+---
 
 ## 📜 Data:
-We collected **194 images** spanning 6 fruit categories: **Apples, Strawberries, Kiwis, Lemons, Oranges**, and an **Unknown** type.
-Annotation was performed using **LabelMe**.
-The photos are on teh directory dataset
+- We collected **194 images** spanning 6 fruit categories: **Apples, Strawberries, Kiwis, Lemons, Oranges**, and an **Unknown** type.
+
+- Each image was annotated using **LabelMe** to generate individual JSON files.  
+   - These annotations include:
+     - Bounding boxes.
+     - Object categories.
+
+- The images are in the directory dataset
 
 ## 🧠 Model:
 The fruit detection model is built using **Faster R-CNN** with the [**Detectron2**](https://github.com/facebookresearch/detectron2) library.
@@ -77,20 +87,12 @@ The fruit detection model is built using **Faster R-CNN** with the [**Detectron2
 
 To facilitate the integration of annotated data with the model, we converted individual **LabelMe JSON files** into a single **COCO JSON file** useful for object detection and segmentation tasks.
 
----
+#### **Process**   
 
-#### **Process**
+1. **Transformation**:  
+   - The **labelme2coco** tool was used to combine all LabelMe JSON files  into a single **COCO JSON file**.  
 
-1. **Annotation Collection**:  
-   - Each image was annotated using **LabelMe** to generate individual JSON files.  
-   - These annotations include:
-     - Bounding boxes.
-     - Object categories.
-
-2. **Transformation**:  
-   - The **labelme2coco** tool was used to combine all JSON files into a single **COCO JSON file**.  
-
-3. **COCO JSON Structure**:  
+2. **COCO JSON Structure**:  
    The resulting COCO file contains:  
    - **Images**: The paths and metadata of all annotated images.  
    - **Annotations**: Bounding boxes, segmentation masks, and associated categories.  
@@ -100,12 +102,8 @@ To facilitate the integration of annotated data with the model, we converted ind
 
 We implemented the **Faster R-CNN** model with a **ResNet-50** backbone and **Feature Pyramid Network (FPN)** for fruit detection and classification.
 
----
 #### **1. Feature Extraction and Multi-Scale Representation**
-
-| ![Feature Extraction and FPN](./images/Feature Extraction and FPN.png) |
-|:---:|
-| **ResNet-50 Backbone and Feature Pyramid Network (FPN)** |
+![Model](./images/Feature Extraction and FPN.png) |
 
 - **Backbone - ResNet-50**  
    - Extracts essential features from the input images using convolutional layers.  
@@ -116,10 +114,7 @@ We implemented the **Faster R-CNN** model with a **ResNet-50** backbone and **Fe
    - Produces **multi-scale feature maps** that allow the model to detect fruits of various sizes effectively.  
 
 #### **2. Fruit Detection and Classification Process**
-
-| ![Fruit Detection and Classification](./images/Fruit Detection and Classification Process.png) |
-|:---:|
-| **Detection and Classification Pipeline** |
+![Fruit Detection and Classification](./images/Fruit_Detection_and_Classification_Process.png)
 
 1. **Region Proposal Network (RPN)**:  
    - The FPN-generated feature maps are used to propose potential regions (RoIs) where fruits might be located.  
