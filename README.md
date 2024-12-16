@@ -9,7 +9,8 @@
 - [🧠 Model](#-model)
    - [Data Annotation: Transformation to COCO Format](#️-data-annotation-transformation-to-coco-format)
    - [Model Architecture](#️-model-architecture)
-- [ 🔗 Model Integration](#-model-integration)   
+- [🔗 Model Integration](#-model-integration) 
+- [🐳 Dockerization](#-Dockerization)  
 - [Setup and Deployment](#setup-and-deployment)
 - [Results](#results)
 - [Challenges and Future Improvements](#challenges-and-future-improvements)
@@ -136,6 +137,9 @@ We implemented the **Faster R-CNN** model with a **ResNet-50** backbone and **Fe
 
 ## 🔗 Model Integration 
 The model is integrated into the application via **FastAPI**:
+ **Model Path**:  
+   The trained model weights are stored in a specific directory `./detectron2/model_path/model_final.pth`.  
+   - The path is loaded during FastAPI server startup to ensure quick model inference.  
 - **Model Inference**: FastAPI serves as the backend API to perform predictions.
 - **Endpoints**:
    - **/analyze**: Accepts input images for fruit detection.
@@ -145,20 +149,119 @@ The model is integrated into the application via **FastAPI**:
    - **Backend**: FastAPI processes the image using the trained model and returns results.
    - **History Storage**: Results are stored in **MongoDB**.
 
+## 🛠️ **Node.js Express Backend**
+
+The **backend** is developed using **Node.js** with the **Express.js framework**. It connects to a MongoDB database to handle fruit history data and provides the following endpoints:
+
+### **API Endpoints**
+
+1. **`GET/POST /nodejs/api/history`**  
+   - Retrieve all histories or create a new history.  
+
+2. **`GET /nodejs/api/history/os`**  
+   - Fetch the **OS hostname** where the service is running.  
+
+3. **`GET /nodejs/api/history/live`**  
+   - Check if the server is live.
+
+### **Running the Backend Alone**
+
+To run the backend independently:
+
+1. Navigate to the `backend` directory:
+   ```bash
+   cd backend
+   ```
+
+2. Create a **.env** file and define the following variables:
+  ```.env
+   MONGO_BASE_URI=<your_mongodb_url>
+   DB_NAME=fruitvision
+   MONGO_USERNAME=<your_mongodb_username>
+   MONGO_PASSWORD=<your_mongodb_password>
+   ```
+3. Start the server:
+  ```bash
+   node server.js
+   ```
+4. Access the API:
+
+  - http://localhost:5000/nodejs/api/history (Main endpoint).
+
+> [!NOTE]
+> Note that this step only applies if you would like to run the backend independently and use your own mongodatabase. We define one in the docker compose file
+
+## 🐳 Dockerization
+
+The project is fully containerized with **Docker** to ensure portability and scalability. Two Docker images are built and pushed to Docker Hub:
+
+- **`hiba25/backend`**: For the Node.js backend.  
+- **`hiba25/modele`**: For the FastAPI model.
+
 ---
 
-## **Setup and Deployment**
+### **Docker Compose Configuration**
+
+A `docker-compose.yml` file is provided to orchestrate the services. It includes:
+
+1. **MongoDB**:  
+   - Database service for storing history data.  
+   - **Ports**: `27018:27017`  
+   - **Data Persistence**: Managed using volumes.
+
+2. **Mongo Express**:  
+   - Web-based UI for MongoDB.  
+   - **Accessible at**: `http://localhost:8081`
+
+3. **Backend Service**:  
+   - Node.js Express API for handling history endpoints.  
+   - **Ports**: `5000:5000`
+
+4. **Model Service**:  
+   - FastAPI service hosting the deep learning model.  
+   - **Ports**: `8000:8000`  
+   - **Swagger UI**: Accessible at `http://your_IP:8000/docs`
+
+
+## **Setup and installation**
 
 ### Prerequisites
 - Docker
-- Kubernetes CLI (`kubectl`)
-- Azure Kubernetes Service (AKS) cluster set up
-- GitLab CI with environment variables:
-   - MongoDB credentials
-   - Firebase service account
+- Flutter development environment (e.g., Android Studio)
+- Terraform
+- Azure account to build and manage the virtual machine via terraform
 
-### Steps to Deploy
+### Steps to Run
 1. **Clone the repository**:
    ```bash
    git clone <repo-link>
    cd project-directory
+   ```
+2. **Run Docker Services**:
+- Update BASE_URL in docker-compose.yml with your IP.
+- Start services:
+   ```bash
+    docker-compose up -d
+   ```
+3. **Configure Flutter Application**:
+- Navigate to the Flutter root directory and open it with your Flutter development environment
+- Create a .env file:
+  ```env
+  MODEL_API=http://your_IP:8000
+  HISTORY_API=http://your_IP:5000/nodejs
+  ```
+4. **Install Flutter Dependencies**:
+  ```bash
+  flutter pub get
+  ```
+5. **Run the Flutter Application**:
+- Connect a device/emulator.
+- Start the app:
+  ```bash
+  flutter run
+  ```
+### Useful URLs
+- FastAPI Endpoints (Model): http://your_IP:8000/docs
+- Node.js API (Backend): http://your_IP:5000/nodejs/api/history
+- Mongo Express: http://your_IP:8081
+

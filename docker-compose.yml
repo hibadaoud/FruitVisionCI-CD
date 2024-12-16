@@ -7,7 +7,7 @@ services:
       restart: always
       ports:
         - "27018:27017"
-      networks:
+      networks: 
         - fruitvision-network
       environment:
         MONGO_INITDB_ROOT_USERNAME: "mongo"
@@ -49,6 +49,16 @@ services:
         - mongo-express
       networks:
         - fruitvision-network
+  modele:
+      image: hiba25/modele
+      container_name: modele_fruit_container
+      ports:
+        - "8000:8000"
+      environment:
+        MODEL_PATH: "/app/model_path/model_final.pth"
+        BASE_URL: "http://your_IP:8000"
+      networks:
+        - fruitvision-network
   
 networks:
   fruitvision-network:
@@ -59,13 +69,3 @@ volumes:
     name: MONGO_DATA
   MONGO_CONFIG:
     name: MONGO_CONFIG
-  # modele:
-  #     image: hiba25/modele
-  #     container_name: modele_fruit_container
-  #     ports:
-  #       - "8000:8000"
-  #     environment:
-  #       MODEL_PATH: "/app/model_path/model_final.pth"
-  #       BASE_URL: "http://192.168.146.95:8000"
-  #     networks:
-  #       - supspace-network
