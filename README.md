@@ -103,7 +103,7 @@ To facilitate the integration of annotated data with the model, we converted ind
 We implemented the **Faster R-CNN** model with a **ResNet-50** backbone and **Feature Pyramid Network (FPN)** for fruit detection and classification.
 
 #### **1. Feature Extraction and Multi-Scale Representation**
-![Model](./images/Feature_Extraction_and_FPN.png) |
+![Feature Extraction](./images/Feature_Extraction_and_FPN.png) |
 
 - **Backbone - ResNet-50**  
    - Extracts essential features from the input images using convolutional layers.  
