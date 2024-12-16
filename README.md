@@ -75,7 +75,7 @@ The project is divided into **two main parts**:
      - Bounding boxes.
      - Object categories.
 
-- The images are in the dataset directory
+- The images are in `./dataset/`.  
 
 ## 🧠 Model:
 The fruit detection model is built using **Faster R-CNN** with the [**Detectron2**](https://github.com/facebookresearch/detectron2) library.
@@ -198,8 +198,6 @@ The project is fully containerized with **Docker** to ensure portability and sca
 - **`hiba25/backend`**: For the Node.js backend.  
 - **`hiba25/modele`**: For the FastAPI model.
 
----
-
 ### **Docker Compose Configuration**
 
 A `docker-compose.yml` file is provided to orchestrate the services. It includes:
@@ -238,28 +236,28 @@ A `docker-compose.yml` file is provided to orchestrate the services. It includes
    cd project-directory
    ```
 2. **Run Docker Services**:
-- Update BASE_URL in docker-compose.yml with your IP.
-- Start services:
-   ```bash
-    docker-compose up -d
-   ```
+  - Update **BASE_URL** in docker-compose.yml with **your IP**.
+  - Start services:
+    ```bash
+      docker-compose up -d
+    ```
 3. **Configure Flutter Application**:
-- Navigate to the Flutter root directory and open it with your Flutter development environment
-- Create a .env file:
-  ```env
-  MODEL_API=http://your_IP:8000
-  HISTORY_API=http://your_IP:5000/nodejs
-  ```
+  - Navigate to the Flutter root directory and open it with your Flutter development environment
+  - Create a .env file:
+    ```env
+    MODEL_API=http://your_IP:8000
+    HISTORY_API=http://your_IP:5000/nodejs
+    ```
 4. **Install Flutter Dependencies**:
   ```bash
   flutter pub get
   ```
 5. **Run the Flutter Application**:
-- Connect a device/emulator.
-- Start the app:
-  ```bash
-  flutter run
-  ```
+  - Connect a device/emulator.
+  - Start the app:
+    ```bash
+    flutter run
+    ```
 ### Useful URLs
 - FastAPI Endpoints (Model): http://your_IP:8000/docs
 - Node.js API (Backend): http://your_IP:5000/nodejs/api/history
