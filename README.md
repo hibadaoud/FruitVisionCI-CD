@@ -117,7 +117,7 @@ We implemented the **Faster R-CNN** model with a **ResNet-50** backbone and **Fe
 
 #### **2. Fruit Detection and Classification Process**
 <div align="center">
-    <img src="./images/Fruit_Detection_Process.png" alt="Fruit Detection and Classification Process" width="70%">
+    <img src="./images/Fruit_Detection_and_Classification_Process.png" alt="Fruit Detection and Classification Process" width="70%">
 </div>
 1. **Region Proposal Network (RPN)**:  
    - The FPN-generated feature maps are used to propose potential regions (RoIs) where fruits might be located.  
