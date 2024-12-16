@@ -9,6 +9,7 @@
 - [🧠 Model](#-model)
    - [Data Annotation: Transformation to COCO Format](#️-data-annotation-transformation-to-coco-format)
    - [Model Architecture](#️-model-architecture)
+- [ 🔗 Model Integration](#-model-integration)   
 - [Setup and Deployment](#setup-and-deployment)
 - [Results](#results)
 - [Challenges and Future Improvements](#challenges-and-future-improvements)
@@ -26,7 +27,6 @@ The project is divided into **two main parts**:
 1. **Model Development**: Building a deep learning computer vision model for processing, detecting, classifying, and counting fruits on trees.
 2. **Application Development**: Integrating the model into an application, with a backend and a persistent database for seamless functionality.
 
----
 
 ## 🔑 Key Objectives
 
@@ -52,8 +52,6 @@ The project is divided into **two main parts**:
    - **Backend Database** (for data storage and retrieval).  
 
 
----
-
 ## 🚀 Technologies Used
 
 | Component            | Technology                          |
@@ -64,11 +62,9 @@ The project is divided into **two main parts**:
 | **Backend**          | Express.js, MongoDB                |
 | **Authentication**   | Firebase Auth                      |
 | **Containerization** | Docker                              |
----
 
 ## 🏛️ Architecture
 
----
 
 ## 📜 Data:
 - We collected **194 images** spanning 6 fruit categories: **Apples, Strawberries, Kiwis, Lemons, Oranges**, and an **Unknown** type.
@@ -78,7 +74,7 @@ The project is divided into **two main parts**:
      - Bounding boxes.
      - Object categories.
 
-- The images are in the directory dataset
+- The images are in the dataset directory
 
 ## 🧠 Model:
 The fruit detection model is built using **Faster R-CNN** with the [**Detectron2**](https://github.com/facebookresearch/detectron2) library.
@@ -119,6 +115,7 @@ We implemented the **Faster R-CNN** model with a **ResNet-50** backbone and **Fe
 <div align="center">
     <img src="./images/Fruit_Detection_and_Classification_Process.png" alt="Fruit Detection and Classification Process" width="70%">
 </div>
+
 1. **Region Proposal Network (RPN)**:  
    - The FPN-generated feature maps are used to propose potential regions (RoIs) where fruits might be located.  
    - Each proposal is assigned an **objectiveness score** to filter irrelevant regions.  
@@ -135,9 +132,9 @@ We implemented the **Faster R-CNN** model with a **ResNet-50** backbone and **Fe
 4. **Final Output**:  
    - The model outputs an image annotated with **bounding boxes** around each detected fruit and its corresponding classification label.  
    - The total number of fruits is determined by counting the bounding boxes.
----
 
-### 2. **Application Integration**
+
+## 🔗 Model Integration 
 The model is integrated into the application via **FastAPI**:
 - **Model Inference**: FastAPI serves as the backend API to perform predictions.
 - **Endpoints**:
@@ -147,65 +144,6 @@ The model is integrated into the application via **FastAPI**:
    - **Frontend**: Flutter app sends images to FastAPI.
    - **Backend**: FastAPI processes the image using the trained model and returns results.
    - **History Storage**: Results are stored in **MongoDB**.
-
----
-
-## **Deployment with Kubernetes**
-
-The deployment is based on **Kubernetes microservices** hosted on **Azure Kubernetes Service (AKS)**. 
-
-### **Key Details**:
-1. **Microservices**:
-   - FastAPI for model inference.
-   - Express.js for backend logic and history management.
-2. **Scalability**:
-   - Multiple **replicas** are created for each microservice to ensure high availability.
-3. **Ingress Controller**:
-   - Azure’s **webapprouting.kubernetes.azure.com** forwards external traffic to internal microservices securely.
-4. **Pods and Cluster**:
-   - The AKS cluster manages all pods with automated load balancing and scaling.
-5. **Deployment URL**:
-   - The final deployment URL is automatically updated in **Firebase Remote Config** after each successful pipeline run.
-
----
-
-## **CI/CD Pipeline**
-
-The **CI/CD pipeline** ensures a seamless and automated process from development to production. It is implemented using **GitLab CI/CD** with the following goals:
-
-### **Pipeline Stages**:
-1. **Testing**:
-   - Runs unit tests and code coverage checks.
-2. **Containerization**:
-   - Docker images are built, tested, and pushed to the registry.
-3. **Deployment**:
-   - Application is deployed to **Dev**, **Stage**, and **Prod** environments on Kubernetes.
-   - Ingress is configured to manage traffic routing.
-4. **Integration Testing**:
-   - Backend services are tested via **curl** commands to ensure endpoints are functioning.
-5. **Post-Deployment**:
-   - The deployment URL is stored in **Firebase Remote Config** to update the application automatically.
-
-### **Workflow**:
-![CI/CD Workflow](image.png)
-
-For detailed configuration, refer to the [`.gitlab-ci.yml`](.gitlab-ci.yml) file&#8203;:contentReference[oaicite:0]{index=0}.
-
----
-
-## **Technologies Used**
-
-| Component            | Technology                          |
-|-----------------------|-------------------------------------|
-| **Model**            | Detectron2, Faster R-CNN, COCO Eval |
-| **Backend API**      | FastAPI                             |
-| **Frontend**         | Flutter                             |
-| **Backend**          | Express.js, MongoDB                |
-| **Authentication**   | Firebase Auth                      |
-| **Containerization** | Docker                              |
-| **Orchestration**    | Azure Kubernetes Service (AKS)      |
-| **Ingress Controller**| Azure Web Application Routing      |
-| **CI/CD**            | GitLab CI/CD                        |
 
 ---
 
