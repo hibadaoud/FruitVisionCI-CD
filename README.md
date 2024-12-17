@@ -1,4 +1,4 @@
-#  **FruitVision: AI-based Application for Counting and Classification** 
+#  **FruitVision: AI-based Application for Fruit Counting and Classification** 
 
 ## **Table of Contents**
 - [📌 Project Overview](#-project-overview)
