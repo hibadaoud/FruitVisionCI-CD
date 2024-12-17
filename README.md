@@ -57,7 +57,7 @@ The project is divided into **three main parts**:
    - **Backend Database** (for data storage and retrieval).  
 
 - 🐳 **Containerization and Orchestration**  
-   Package the application components (backend, model, and database) into lightweight **containers** to ensure portability. Use an **Docker compose** an orchestration tool to manage and run these services together seamlessly.
+   Package the application components (backend, model, and database) into lightweight **containers** to ensure portability. Use **Docker compose** an orchestration tool to manage and run these services together seamlessly.
 
 - ☁️ **Infrastructure Automation**  
    Automate the provisioning and deployment of the system infrastructure to the cloud, ensuring consistency, scalability, and simplified resource management.
@@ -259,28 +259,22 @@ Using **Terraform**, we successfully automated the deployment of a Virtual Machi
 
 ## 📱Results: FruitVision Application Interfaces
 <br/>
-<div style="display:flex;flex-direction:column;justify-content:canter;" align="center">
+<div align="center">
     <div>  
         <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/a14a6abe-f49c-403e-a9b1-225616b11194" alt="pic1" height="400">
-<!--         <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/86dc13e8-df93-4ee0-8b74-7595cbae113b" alt="Login and signup" height="400">
-        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/b3516cc3-544f-4091-83bf-4038d0fc029b" alt="settings" height="400">   -->
     </div>
     <br/>
     <div>
-        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/b0d97f9c-db2d-4660-969b-60bf6aa8744c" alt="pic2" height="400">    
-<!--         <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/c69c97bb-d3bd-4dc2-a207-bc1625fd27cd" alt="Prediction History" height="400">
-    </div> -->
+        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/b0d97f9c-db2d-4660-969b-60bf6aa8744c" alt="pic2" height="400">
+    </div>
     <br/>
     <div>
-        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/678e4631-0f33-4211-8843-f0915ec5c632" alt="pic3" height="400">    
-<!--         <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/c69c97bb-d3bd-4dc2-a207-bc1625fd27cd" alt="Prediction History" height="400">
-    </div> -->
+        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/678e4631-0f33-4211-8843-f0915ec5c632" alt="pic3" height="400">
+    </div>
     <br/>
     <div>
-        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/605465c4-cb6e-4d1e-8d78-e3db9b27bfde" alt="pic3" height="400">    
-<!--         <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/c69c97bb-d3bd-4dc2-a207-bc1625fd27cd" alt="Prediction History" height="400">
-    </div> -->
-    <br/>
+        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/605465c4-cb6e-4d1e-8d78-e3db9b27bfde" alt="pic4" height="400">
+    </div>
 </div>
 
 ## 🔧 Setup and usage
