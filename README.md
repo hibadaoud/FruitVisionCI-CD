@@ -179,11 +179,11 @@ The trained model is integrated into the application via **FastAPI**, enabling r
 
 ### **Model Inference**  
 1. **Testing and Visualization**:  
-   - After training on **Google Colab**, the model was locally tested using a **Python script** (`./P2M.py`).  
+   - After training on **Google Colab**, the model was locally tested using a **Python script** (`./detectron2/P2M.py`).  
    - The visualization functions were adapted to validate predictions on test images and ensure proper detection and classification.
 
 2. **Integration with FastAPI**:  
-   - The same functions and model are used in the **FastAPI server** (`./fastapi_code.py`) to provide an API interface for the trained model.  
+   - The same functions and model are used in the **FastAPI server** (`./detetron2/fastapi_code.py`) to provide an API interface for the trained model.  
    - This enables real-time predictions and seamless backend integration.
 
 ### **Endpoints**  
