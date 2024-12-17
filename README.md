@@ -72,8 +72,7 @@ The project is divided into **three main parts**:
 | **Frontend**         | Flutter                             |
 | **Backend**          | Express.js, MongoDB                |
 | **Authentication**   | Firebase Auth                      |
-| **Containerization** | Docker                              |
-| **Orchestration**    | Docker Compose                      |
+| **Container Management** | Docker & Docker Compose                             |
 | **Infrastructure**   | Terraform                           |
 
 ## 🏛️ Architecture
