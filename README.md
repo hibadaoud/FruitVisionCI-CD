@@ -78,7 +78,7 @@ The project is divided into **three main parts**:
 ## 🏛️ Architecture
 
 
-## 📜 Data:
+## 📜 Data
 - We collected **194 images** spanning 6 fruit categories: **Apples, Strawberries, Kiwis, Lemons, Oranges**, and an **Unknown** type.
 
 - Each image was annotated using **LabelMe** to generate individual JSON files.  
@@ -88,7 +88,7 @@ The project is divided into **three main parts**:
 
 - The images are in `./dataset/`.  
 
-## 🧠 Model:
+## 🧠 Model
 The fruit detection model is built using **Faster R-CNN** with the [**Detectron2**](https://github.com/facebookresearch/detectron2) library.
 
 ### 🗂️ **Data Annotation: Transformation to COCO Format**
