@@ -15,7 +15,6 @@
 - [📱 Results: Application interfaces](#results)
 - [🔧 Setup and usage](#setup-and-usage)
 - [🔮 Future Considerations](#-future-considerations)
-- [🤝 Contributing](#-contributing)
 - [👨‍💻 Project By](#project-by)
 
 ---
@@ -388,6 +387,27 @@ Using **Terraform**, we successfully automated the deployment of a Virtual Machi
 9. **Access Deployed Services**:
    - **FastAPI Swagger UI**: `http://<public_IP>:8000/docs`  
    - **Backend API**: `http://<public_IP>:5000/nodejs/api/history`  
+
+## 🔮 Future Considerations
+
+1. **Model Improvements**:  
+   - Address existing detection challenges, such as **omissions** and **localization errors**, by:
+     - Expanding the training dataset with more diverse and high-resolution images.  
+     - Enhancing the model using **advanced algorithms** like attention mechanisms to improve fruit detection precision.  
+     - Evaluating the model under varied environmental conditions, such as low lighting or occlusions, to enhance robustness.
+
+2. **Implementing a CI/CD Pipeline**:  
+   - Currently, deployment relies on manual Docker Compose and Terraform workflows. A **CI/CD pipeline** will automate and optimize the development and deployment process.  
+   - **Objective**: Ensure seamless and efficient integration of new code by:
+      - **Continuous Integration**: Automatically testing new code changes, building updated Docker images, and ensuring compatibility with the system.  
+      - **Continuous Delivery**: Deploying the application across multiple environments (e.g., **Development**, **Staging**, and **Production**) to verify stability and ensure reliable updates.  
+
+   This setup will minimize manual intervention, reduce errors, and improve overall development and deployment efficiency.
+
+## 👨‍💻 Project by
+
+
+
    
 
 
