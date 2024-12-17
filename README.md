@@ -11,9 +11,12 @@
    - [Model Architecture](#️-model-architecture)
 - [🔗 Model Integration](#-model-integration) 
 - [🐳 Dockerization](#-Dockerization)  
-- [Setup and Deployment](#setup-and-deployment)
-- [Results](#results)
-- [Challenges and Future Improvements](#challenges-and-future-improvements)
+- [☁️ Deployment Using Terraform](#deployment-using-terraform)
+- [📱 Results: Application interfaces](#results)
+- [🔧 Setup and usage](#setup-and-usage)
+- [🔮 Future Considerations](#-future-considerations)
+- [🤝 Contributing](#-contributing)
+- [👨‍💻 Project By](#project-by)
 
 ---
 
@@ -24,9 +27,10 @@ This project, developed by Hiba Daoud and Farah Elloumi as part of their end-of-
 
 ### 🌟 Project Scope:
 
-The project is divided into **two main parts**:
+The project is divided into **three main parts**:
 1. **Model Development**: Building a deep learning computer vision model for processing, detecting, classifying, and counting fruits on trees.
 2. **Application Development**: Integrating the model into an application, with a backend and a persistent database for seamless functionality.
+3. **Deployment and Scalability**: Packaging the application into containers, orchestrating services for seamless operation, and automating infrastructure deployment to ensure scalability, consistency, and efficient resource management.
 
 
 ## 🔑 Key Objectives
@@ -52,6 +56,12 @@ The project is divided into **two main parts**:
    - **Application Frontend** (for user interaction).  
    - **Backend Database** (for data storage and retrieval).  
 
+- 🐳 **Containerization and Orchestration**  
+   Package the application components (backend, model, and database) into lightweight **containers** to ensure portability. Use an **Docker compose** an orchestration tool to manage and run these services together seamlessly.
+
+- ☁️ **Infrastructure Automation**  
+   Automate the provisioning and deployment of the system infrastructure to the cloud, ensuring consistency, scalability, and simplified resource management.
+
 
 ## 🚀 Technologies Used
 
@@ -63,6 +73,8 @@ The project is divided into **two main parts**:
 | **Backend**          | Express.js, MongoDB                |
 | **Authentication**   | Firebase Auth                      |
 | **Containerization** | Docker                              |
+| **Orchestration**    | Docker Compose                      |
+| **Infrastructure**   | Terraform                           |
 
 ## 🏛️ Architecture
 
@@ -221,7 +233,57 @@ A `docker-compose.yml` file is provided to orchestrate the services. It includes
    - **Swagger UI**: Accessible at `http://your_IP:8000/docs`
 
 
-## **Setup and installation**
+## ☁️ Deployment Using Terraform
+
+### **Goal**
+The goal of using **Terraform** is to automate and provision the infrastructure required for deploying the **FruitVision application**. Terraform ensures consistency, scalability, and seamless management of cloud resources.
+
+Using **Terraform**, we successfully automated the deployment of a Virtual Machine and networking configurations. This ensured a scalable and secure infrastructure for our application, ready for deployment of services like the Node.js backend, Mongo database and FastAPI model.
+
+
+1. **Infrastructure Definition**:  
+   - We defined and automated the infrastructure using Terraform files (`main.tf`, `network.tf`, `vm-provisioner.tf`).
+   - Resources include:
+     - **Virtual Machines (VMs)** for running services.
+     - **Networking** configurations (VNet, Subnet, Security Groups) to manage communication.
+     - Public IP setup for external access.
+
+2. **Docker Compose Integration**:  
+   - The **public IP** of the deployed VM is dynamically updated in the **Docker Compose file** to configure the `BASE_URL` for running the FastAPI model.
+
+3. **SSH Key Configuration**:  
+   - We set up **SSH key-pairs** to enable secure access to the provisioned virtual machines.
+
+4. **State and Outputs**:  
+   - Terraform outputs the necessary details like the **Public IP** of the deployed instances for quick access.
+
+## 📱Results: FruitVision Application Interfaces
+<br/>
+<div style="display:flex;flex-direction:column;justify-content:canter;" align="center">
+    <div>  
+        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/a14a6abe-f49c-403e-a9b1-225616b11194" alt="pic1" height="400">
+<!--         <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/86dc13e8-df93-4ee0-8b74-7595cbae113b" alt="Login and signup" height="400">
+        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/b3516cc3-544f-4091-83bf-4038d0fc029b" alt="settings" height="400">   -->
+    </div>
+    <br/>
+    <div>
+        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/b0d97f9c-db2d-4660-969b-60bf6aa8744c" alt="pic2" height="400">    
+<!--         <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/c69c97bb-d3bd-4dc2-a207-bc1625fd27cd" alt="Prediction History" height="400">
+    </div> -->
+    <br/>
+    <div>
+        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/678e4631-0f33-4211-8843-f0915ec5c632" alt="pic3" height="400">    
+<!--         <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/c69c97bb-d3bd-4dc2-a207-bc1625fd27cd" alt="Prediction History" height="400">
+    </div> -->
+    <br/>
+    <div>
+        <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/605465c4-cb6e-4d1e-8d78-e3db9b27bfde" alt="pic3" height="400">    
+<!--         <img style="padding:10px;" src="https://github.com/hibadaoud/FruitVision/assets/153644549/c69c97bb-d3bd-4dc2-a207-bc1625fd27cd" alt="Prediction History" height="400">
+    </div> -->
+    <br/>
+</div>
+
+## 🔧 Setup and usage
 
 ### Prerequisites
 - Docker
@@ -262,4 +324,77 @@ A `docker-compose.yml` file is provided to orchestrate the services. It includes
 - FastAPI Endpoints (Model): http://your_IP:8000/docs
 - Node.js API (Backend): http://your_IP:5000/nodejs/api/history
 - Mongo Express: http://your_IP:8081
+
+## Microsoft Azure Terraform Setup tp deploy a VM
+ 1. **Pre-requisites**:
+   - Install the **Azure CLI** and authenticate:
+     ```bash
+     az login
+     ```
+
+   - Generate an SSH key-pair (if not already created):
+     ```bash
+     ssh-keygen
+     ```
+
+   - Export the public key as an environment variable:
+     - **Linux**:
+       ```bash
+       export TF_VAR_ssh_public_key="$(cat ~/.ssh/id_rsa.pub)"
+       ```
+     - **Windows**:
+       ```bash
+       $env:TF_VAR_ssh_public_key = Get-Content -Raw -Path "C:\Users\<YourUsername>\.ssh\id_rsa.pub"
+       ```
+
+2. **Update Configuration**:
+   - Modify the `variables.tf` file to include your **IP address** for permitted access.
+
+3. **Initialize Terraform**:
+   - Navigate to the Terraform project directory and initialize Terraform:
+     ```bash
+     terraform init
+     ```
+
+4. **Apply Configuration**:
+   - Provision the resources by running:
+     ```bash
+     terraform apply
+     ```
+
+5. **Deploy Services**:
+   - SSH into the virtual machine:
+     ```bash
+     ssh -i ~/.ssh/id_rsa adminuser@<instance_public_ip>
+     ```
+
+   - Run the Docker Compose file:
+     ```bash
+     docker-compose up -d
+     ```
+
+6. **Update Flutter Configuration**:
+   - After deploying with Terraform, update the `.env` file in the **Flutter project** with the new `public_IP`:
+     ```env
+     MODEL_API=http://<public_IP>:8000
+     HISTORY_API=http://<public_IP>:5000/nodejs
+     ```
+
+8. **Configure and Run Flutter Application**:
+   - Navigate to the Flutter root directory and install dependencies:
+     ```bash
+     flutter pub get
+     ```
+
+   - Connect your device/emulator and run the app:
+     ```bash
+     flutter run
+     ```
+
+9. **Access Deployed Services**:
+   - **FastAPI Swagger UI**: `http://<public_IP>:8000/docs`  
+   - **Backend API**: `http://<public_IP>:5000/nodejs/api/history`  
+   
+
+
 
