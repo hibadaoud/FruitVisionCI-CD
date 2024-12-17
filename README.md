@@ -98,7 +98,13 @@ To facilitate the integration of annotated data with the model, we converted ind
 #### **Process**   
 
 1. **Transformation**:  
-   - The **labelme2coco** tool was used to combine all LabelMe JSON files  into a single **COCO JSON file**.  
+   - The **labelme2coco** tool was used to combine all LabelMe JSON files  into a single **COCO JSON file**. 
+   ```bash
+   pip install -U labelme2coco
+   labelme2coco path/to/labelme/dir  #for individual json files
+   ```
+   
+
 
 2. **COCO JSON Structure**:  
    The resulting COCO file contains:  
@@ -145,6 +151,25 @@ We implemented the **Faster R-CNN** model with a **ResNet-50** backbone and **Fe
    - The model outputs an image annotated with **bounding boxes** around each detected fruit and its corresponding classification label.  
    - The total number of fruits is determined by counting the bounding boxes.
 
+### 📈 **Training and Output**
+
+1. **Training Environment**:  
+   - The model was trained on **Google Colab** using the notebook file:  
+     - `./P2M.ipynb` (adapted from Detectron2's "Getting Started" notebook).  
+
+2. **Dataset**:  
+   - The training dataset provided in this repository (`./dataset`) was:
+     - Converted to **COCO JSON format**.  
+     - Processed using custom Python scripts to adjust minor details.  
+
+3. **Validation**:  
+   - The validation dataset (`./dataset/val`) underwent the same processing pipeline as the training data.
+
+4. **Output**:  
+   - The final output is a **trained weight model file** stored at:  
+     - `./detectron2/model_path`.  
+
+   - This model is used for inference to detect, classify, and count fruits accurately.
 
 ## 🔗 Model Integration 
 The model is integrated into the application via **FastAPI**:
