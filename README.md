@@ -1,4 +1,4 @@
-#  **FruitVision: AI-based Application for Fruit Counting and Classification** 
+#  **FruitVision: AI-Powered Fruit Counting & Classification with Docker Containerization and Terraform Deployment** 
 
 ## **Table of Contents**
 - [📌 Project Overview](#-project-overview)
