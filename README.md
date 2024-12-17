@@ -38,6 +38,7 @@ The project is divided into **three main parts**:
    Develop an **intuitive and easy-to-use application** that allows farmers to:
    - Capture photos of their trees.  
    - View the processed results, including fruit detection, classification, and counts.  
+   - View the history of the predicted trees photos.
 
 - 🧠 **Deep Learning Integration**  
    Incorporate a **computer vision model** for:  
