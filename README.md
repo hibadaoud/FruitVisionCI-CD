@@ -104,8 +104,6 @@ To facilitate the integration of annotated data with the model, we converted ind
    labelme2coco path/to/labelme/dir  #for individual json files
    ```
    
-
-
 2. **COCO JSON Structure**:  
    The resulting COCO file contains:  
    - **Images**: The paths and metadata of all annotated images.  
@@ -171,19 +169,38 @@ We implemented the **Faster R-CNN** model with a **ResNet-50** backbone and **Fe
 
    - This model is used for inference to detect, classify, and count fruits accurately.
 
-## 🔗 Model Integration 
-The model is integrated into the application via **FastAPI**:
- **Model Path**:  
-   The trained model weights are stored in a specific directory `./detectron2/model_path/model_final.pth`.  
-   - The path is loaded during FastAPI server startup to ensure quick model inference.  
-- **Model Inference**: FastAPI serves as the backend API to perform predictions.
-- **Endpoints**:
-   - **/analyze**: Accepts input images for fruit detection.
-   - **/get_analyzed_image**: Retrieves processed images with bounding boxes.
-- **Data Flow**:
-   - **Frontend**: Flutter app sends images to FastAPI.
-   - **Backend**: FastAPI processes the image using the trained model and returns results.
-   - **History Storage**: Results are stored in **MongoDB**.
+## 🔗 **Model Integration**  
+The trained model is integrated into the application via **FastAPI**, enabling real-time fruit detection and classification.
+
+### **Model Path**  
+- The **trained model weights** are stored in:  
+   - `./detectron2/model_path/model_final.pth`.  
+- The weights are loaded during **FastAPI server startup** to enable quick inference.  
+
+### **Model Inference**  
+1. **Testing and Visualization**:  
+   - After training on **Google Colab**, the model was locally tested using a **Python script** (`./P2M.py`).  
+   - The visualization functions were adapted to validate predictions on test images and ensure proper detection and classification.
+
+2. **Integration with FastAPI**:  
+   - The same functions and model are used in the **FastAPI server** (`./fastapi_code.py`) to provide an API interface for the trained model.  
+   - This enables real-time predictions and seamless backend integration.
+
+### **Endpoints**  
+- **`/analyze`**: Accepts input images and processes them using the trained model to detect and classify fruits.  
+- **`/get_analyzed_image/{filename}`**: Retrieves processed images with **bounding boxes** drawn around the detected fruits.
+
+### **Data Flow**  
+1. **Frontend (Flutter)**:  
+   - The user uploads an image via the mobile application.  
+   - The image is sent to the FastAPI backend.
+
+2. **Backend (FastAPI)**:  
+   - The FastAPI server loads the trained model.  
+   - The image is processed, and the results (e.g., bounding boxes, classifications) are returned to the frontend.
+
+3. **History Storage (MongoDB)**:  
+   - The results are stored in **MongoDB** for tracking and management.
 
 ## 🛠️ **Node.js Express Backend**
 
