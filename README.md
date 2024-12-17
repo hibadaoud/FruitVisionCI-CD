@@ -117,7 +117,7 @@ We implemented the **Faster R-CNN** model with a **ResNet-50** backbone and **Fe
 
 #### **1. Feature Extraction and Multi-Scale Representation**
 <div align="center">
-    <img src="./images/Feature_Extraction_and_FPN.png" alt="Fruit Detection and Classification Process" width="70%">
+    <img src="./images/Feature_Extraction_and_FPN.png" alt="Fruit Detection and Classification Process" >
 </div>
 
 - **Backbone - ResNet-50**  
